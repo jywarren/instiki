@@ -23,7 +23,12 @@ class WikiController < ApplicationController
     elsif @wiki.webs.size == 1
       redirect_home @wiki.webs.values.first.address
     else
-      redirect_to :action => 'web_list'
+      if defined? DEFAULT_WEB
+        @web_name = DEFAULT_WEB
+        redirect_home
+      else
+        redirect_to :action => 'web_list'
+      end
     end
   end
 
